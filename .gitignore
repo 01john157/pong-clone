@@ -1,6 +1,9 @@
+/releases
+
 .vscode
 *.exe
 *.dll
 *.bat
 *.txt
 *.zip
+*.png
