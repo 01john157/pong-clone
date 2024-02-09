@@ -1,4 +1,5 @@
 #include <sdl2/sdl.h>
+#include <sdl2/sdl_mixer.h>
 #include <iostream>
 #include <random>
 
@@ -78,13 +79,17 @@ int main(int argc, char* args[])
     // todo: parse config file for settings
     // todo: window icon
     // todo: backup keyboard controls
-    // todo: sound effects
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
+    // todo: reset all keyboard shortcut
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER);
     SDL_Window* window = SDL_CreateWindow("pong-clone", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 960, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_RenderSetLogicalSize(renderer, RENDER_WIDTH, RENDER_HEIGHT);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_ShowCursor(SDL_DISABLE);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+    Mix_Chunk* ball_hit_paddle = Mix_LoadWAV("./assets/audio/ball_hit_paddle.mp3");
+    Mix_Chunk* ball_hit_wall = Mix_LoadWAV("./assets/audio/ball_hit_wall.mp3");
+    Mix_Chunk* score = Mix_LoadWAV("./assets/audio/score.mp3");
 
     bool fullscreen = false;
     float game_wait = 5.0f;
@@ -188,11 +193,13 @@ int main(int argc, char* args[])
             {
                 if(ball.x < 0)
                 {
+                    Mix_PlayChannel(-1, score, 0);
                     reset_ball(&ball);
                     p2_score++;
                 }
                 else if((ball.x + ball.w) > RENDER_WIDTH)
                 {
+                    Mix_PlayChannel(-1, score, 0);
                     reset_ball(&ball);
                     p1_score++;
                 }
@@ -200,14 +207,17 @@ int main(int argc, char* args[])
                 {
                     if(ball.y + ball.velocity * dT <= 0)
                     {
+                        Mix_PlayChannel(-1, ball_hit_wall, 0);
                         ball.vertical_direction = DOWN;
                     }
                     else if((ball.y + ball.h - 1) >= RENDER_HEIGHT)
                     {
+                        Mix_PlayChannel(-1, ball_hit_wall, 0);
                         ball.vertical_direction = UP;
                     }
                     if(check_collision(&ball, &paddle_left))
                     {
+                        Mix_PlayChannel(-1, ball_hit_paddle, 0);
                         ball.angle = -((paddle_left.y + ((paddle_left.h-1)/2)) - ball.y) / ((paddle_left.h-1)/2);
                         if(ball.angle < 0)
                         {
@@ -222,6 +232,7 @@ int main(int argc, char* args[])
                     }
                     else if(check_collision(&ball, &paddle_right))
                     {
+                        Mix_PlayChannel(-1, ball_hit_paddle, 0);
                         ball.angle = -((paddle_right.y + ((paddle_right.h-1)/2)) - ball.y) / ((paddle_right.h-1)/2);
                         if(ball.angle < 0)
                         {
