@@ -6,8 +6,6 @@
 #include <random>
 #include <unordered_map>
 
-// todo: default config file on github and in releases
-
 void draw_0(float x_offset, float y_offset);
 void draw_1(float x_offset, float y_offset);
 void draw_2(float x_offset, float y_offset);
