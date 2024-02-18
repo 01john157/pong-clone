@@ -1,5 +1,17 @@
 A clone of the 1972 arcade version of [Pong](https://en.wikipedia.org/wiki/Pong?&useskin=vector).
 
+## Controls
+**A controller is required.**  
+`left stick` move the left paddle  
+`right stick` move the right paddle
+
+## Keybindings
+`F5` reset  
+`F11` toggle between windowed mode and the chosen fullscreen mode. Will default to borderless if no fullscreen mode is set.
+
+## Configuration
+A graphics configuration file can be found in `data`.  
+
 # Build
 ## Windows
 ### Requirements
@@ -7,8 +19,9 @@ A clone of the 1972 arcade version of [Pong](https://en.wikipedia.org/wiki/Pong?
 - [Make](https://gnuwin32.sourceforge.net/packages/make.htm): after installation, add `\bin` to your path.
 - [SDL2](https://github.com/libsdl-org/SDL/releases/latest): get SDL2-devel-x.x.x-mingw.
 - [SDL_Mixer](https://github.com/libsdl-org/SDL_mixer/releases/latest): get SDL2_mixer-devel-x.x.x-mingw.
+- [SDL_Image](https://github.com/libsdl-org/SDL_image/releases/latest): get SDL2_image-devel-x.x.x-mingw.
 
-For both SDL2 and SDL_Mixer, extract the contents of `\x86_64-w64-mingw32\` into a directory of your choosing. Then copy the `.dll` files from `\bin` into the root of the cloned repository folder.
+For SDL2, SDL_Mixer and SDL2_image, extract the contents of `\x86_64-w64-mingw32\` into a directory of your choosing. Then copy the `.dll` files from `\bin` into the root of the cloned repository folder.
 
 Open `makefile` and change the `SDL_path` variable to your SDL2 install directory.
 
