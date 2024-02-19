@@ -21,7 +21,7 @@ A graphics configuration file can be found in `data`.
 - [SDL_Mixer](https://github.com/libsdl-org/SDL_mixer/releases/latest): get SDL2_mixer-devel-x.x.x-mingw.
 - [SDL_Image](https://github.com/libsdl-org/SDL_image/releases/latest): get SDL2_image-devel-x.x.x-mingw.
 
-For SDL2, SDL_Mixer and SDL2_image, extract the contents of `\x86_64-w64-mingw32\` into a directory of your choosing. Then copy the `.dll` files from `\bin` into the root of the cloned repository folder.
+For SDL2, SDL_Mixer and SDL_image, extract the contents of `\x86_64-w64-mingw32\` into a directory of your choosing. Then copy the `.dll` files from `\bin` into the root of the cloned repository folder.
 
 Open `makefile` and change the `SDL_path` variable to your SDL2 install directory.
 
