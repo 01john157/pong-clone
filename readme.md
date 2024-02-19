@@ -1,5 +1,7 @@
 A clone of the 1972 arcade version of [Pong](https://en.wikipedia.org/wiki/Pong?&useskin=vector).
 
+![](https://files.catbox.moe/zolvtv.png)
+
 ## Controls
 **A controller is required.**  
 `left stick` move the left paddle  
