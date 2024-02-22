@@ -109,7 +109,7 @@ int main(int argc, char* args[])
 
     // initialise renderer
     Uint32 renderer_flags = SDL_RENDERER_ACCELERATED;
-    switch(config.at("WINDOW_MODE"))
+    switch(config.at("VSYNC"))
     {
         case 1: renderer_flags += SDL_RENDERER_PRESENTVSYNC; break;
         case 0: break;
